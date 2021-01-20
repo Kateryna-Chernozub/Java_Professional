@@ -17,7 +17,7 @@ public class TaskSecondSerializationCopy {
         try {
             byteArrayOutputStream = new ByteArrayOutputStream();
             objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-            
+
             objectOutputStream.writeObject(crow);
 
             byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());

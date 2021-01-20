@@ -7,7 +7,4 @@ package com.javaProfessional.Lesson_10.task.task2;
  */
 
 public class TaskSecondProcessor {
-
-
-
 }
