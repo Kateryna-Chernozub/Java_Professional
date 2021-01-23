@@ -6,4 +6,10 @@
         <breed>Sphinx</breed>
         <weight>6</weight>
     </cat>
+    <cat>
+        <name>Myrzik</name>
+        <age>5</age>
+        <breed>Oriental</breed>
+        <weight>4</weight>
+    </cat>
 </animal>

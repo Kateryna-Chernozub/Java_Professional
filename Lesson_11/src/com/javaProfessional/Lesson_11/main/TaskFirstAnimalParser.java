@@ -1,56 +1,43 @@
 package com.javaProfessional.Lesson_11.main;
 
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
+import java.io.File;
 import java.io.IOException;
+
 
 public class TaskFirstAnimalParser {
     public static void main(String[] args) {
-        final String fileName = "D:\\IT\\my_projects\\Java_Professional\\Lesson_11\\src\\com\\javaProfessional\\Lesson_11\\task\\task1\\taskFirst.xml";
+        try {
+            File xmlFile = new File("D:/IT/my_projects/Java_Professional/Lesson_11/src/com/javaProfessional/Lesson_11/task/task1/taskFirst.xml");
 
-        try{
-            SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
-            SAXParser saxParser = saxParserFactory.newSAXParser();
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
 
-            DefaultHandler defaultHandler = new DefaultHandler() {
-                boolean name = false;
-                @Override
-                public void startElement(String uri, String localName, String qName, Attributes attributes) {
-                    if (qName.equalsIgnoreCase("name")) {
-                        name = true;
-                    }
+            Document document = documentBuilder.parse(xmlFile);
+            Element root = document.getDocumentElement();
+
+            NodeList nodeList = root.getChildNodes();
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+
+                Node node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+                    System.out.println("Cat`s name: " + element.getElementsByTagName("name").item(0).getChildNodes().item(0).getNodeValue());
+                    System.out.println("Breed: " + element.getElementsByTagName("breed").item(0).getChildNodes().item(0).getNodeValue() + "\n");
                 }
-                @Override
-                public void characters (char ch[], int start, int length) throws SAXException{
-                    if (name) {
-                        System.out.println("Name: " + new String(ch, start, length));
-                        name = false;
-                    }
-                }
-//                boolean breed = false;
-//                @Override
-//                public void startElement(String uri, String localName, String qBreed, Attributes attributes) {
-//                    if (qBreed.equalsIgnoreCase("breed")) {
-//                        breed = true;
-//                    }
-//                }
-//                @Override
-//                public void characters (char ch[], int start, int length) throws SAXException{
-//                    if (name) {
-//                        System.out.println("Name: " + new String(ch, start, length));
-//                        name = false;
-//                    }
-//                }
-            };
-
-            saxParser.parse(fileName, defaultHandler);
-
-        } catch (SAXException | ParserConfigurationException | IOException e) {
+            }
+        } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
     }

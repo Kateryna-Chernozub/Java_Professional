@@ -14,6 +14,10 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 
+/**
+ * The program creates and fills the XML file with data.
+ */
+
 public class TaskFirstEntryPoint {
     public static void main(String[] args) throws TransformerConfigurationException {
         try {
@@ -25,6 +29,7 @@ public class TaskFirstEntryPoint {
             Element rootElement = document.createElement("animal");
             document.appendChild(rootElement);
 
+            //create cat1
             Element cat1 = document.createElement("cat");
             rootElement.appendChild(cat1);
             //add element name
@@ -44,7 +49,25 @@ public class TaskFirstEntryPoint {
             weight1.setTextContent("6");
             cat1.appendChild(weight1);
 
-            //TODO 2nd cat
+            //create cat2
+            Element cat2 = document.createElement("cat");
+            rootElement.appendChild(cat2);
+
+            Element name2 = document.createElement("name");
+            name2.setTextContent("Myrzik");
+            cat2.appendChild(name2);
+
+            Element age2 = document.createElement("age");
+            age2.setTextContent("5");
+            cat2.appendChild(age2);
+
+            Element breed2 = document.createElement("breed");
+            breed2.setTextContent("Oriental");
+            cat2.appendChild(breed2);
+
+            Element weight2 = document.createElement("weight");
+            weight2.setTextContent("4");
+            cat2.appendChild(weight2);
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
