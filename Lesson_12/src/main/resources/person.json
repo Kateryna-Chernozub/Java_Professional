@@ -1,0 +1,12 @@
+{
+  "firstName": "Kateryna",
+  "lastName": "Chernozub",
+  "course": {
+    "author": "Yevhenii Tykhonov",
+    "title": "Java Professional"
+  },
+  "personalContacts": [
+    "https://github.com/Kateryna-Chernozub",
+    "https://www.linkedin.com/in/kateryna-chernozub-0a6ba1170/"
+  ]
+}
